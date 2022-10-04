@@ -10,7 +10,7 @@ public class WarriorTest {
     private Warrior warrior1;
     @Before
     public void setUp(){
-        warrior1 = new Warrior();
+        warrior1 = new Warrior("empire", "warrior1");
     }
     @Test
     public void shouldReturnWarriorValue() {

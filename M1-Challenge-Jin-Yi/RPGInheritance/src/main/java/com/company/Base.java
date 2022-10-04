@@ -9,19 +9,22 @@ public class Base {
     protected int stamina;
     protected int speed;
     protected int attackPower;
-    protected boolean running;
-    protected boolean arrested;
+    protected boolean running = false;
+    protected boolean arrested = false;
     protected String abilities;
     protected String attackAnotherCharacter;
 
     public Base() {
-        this.running = false;
-        this.arrested = false;
+
     }
 
-    public Base(String properties, String name, int strength, int health, int stamina, int speed, int attackPower,  boolean running, boolean arrested, String abilities, String attackAnotherCharacter) {
-        this.running = false;
-        this.arrested = false;
+    public Base(String properties, String name) {
+        this.properties = properties;
+        this.name = name;
+    }
+
+    public Base(String properties, String name, int strength, int health, int stamina, int speed, int attackPower, boolean running, boolean arrested, String abilities, String attackAnotherCharacter) {
+
     }
 
 

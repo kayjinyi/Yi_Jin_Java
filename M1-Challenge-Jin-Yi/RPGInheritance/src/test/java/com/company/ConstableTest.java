@@ -12,7 +12,7 @@ public class ConstableTest {
 
     @Before
     public void setUp(){
-        constable1 = new Constable();
+        constable1 = new Constable("excellent", "constable1");
     }
 
     @Test

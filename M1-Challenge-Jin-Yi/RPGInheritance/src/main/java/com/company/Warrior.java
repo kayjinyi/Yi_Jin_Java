@@ -1,25 +1,16 @@
 package com.company;
 
 public class Warrior extends Base{
-    private int shieldStrength;
+    private int shieldStrength =100;
 
-    public Warrior() {
-        this.shieldStrength = 100;
-        this.strength = 75;
-        this.health = 100;
-        this.stamina = 100;
-        this.speed = 50;
-        this.attackPower = 10;
-    }
+    public Warrior(String properties, String name){
+        super(properties, name);
+        this.setStrength(75);
+        this.setHealth(100);
+        this.setStamina(100);
+        this.setSpeed(50);
+        this.setAttackPower(10);
 
-    public Warrior(String properties, String name, int strength, int health, int stamina, int speed, int attackPower, boolean running, boolean arrested, String abilities, String attackAnotherCharacter, int shieldStrength){
-        super(properties, name, strength, health, stamina, speed, attackPower, running, arrested, abilities, attackAnotherCharacter);
-        this.shieldStrength = 100;
-        this.strength = 75;
-        this.health = 100;
-        this.stamina = 100;
-        this.speed = 50;
-        this.attackPower = 10;
     }
 
     public int getShieldStrength() {

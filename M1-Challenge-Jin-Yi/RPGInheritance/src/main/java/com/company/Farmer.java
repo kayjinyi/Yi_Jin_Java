@@ -6,26 +6,16 @@ public class Farmer extends Base{
     private boolean harvesting;
 
 
-    public Farmer() {
 
-        this.strength = 75;
-        this.health = 100;
-        this.stamina = 75;
-        this.speed = 10;
-        this.attackPower =1;
-        this.plowing = false;
-        this.harvesting = false;
-    }
-
-    public Farmer(String properties, String name, int strength, int health, int stamina, int speed, int attackPower, boolean running, boolean arrested, String abilities, String attackAnotherCharacter, boolean plowing,boolean harvesting){
-        super(properties, name, strength, health, stamina, speed, attackPower,running, arrested, abilities, attackAnotherCharacter);
-        this.strength = 75;
-        this.health = 100;
-        this.stamina = 75;
-        this.speed = 10;
-        this.attackPower =1;
-        this.plowing = false;
-        this.harvesting = false;
+    public Farmer(String properties, String name ){
+        super(properties, name);
+        this.setStrength(75);
+        this.setHealth(100);
+        this.setStamina(75);
+        this.setSpeed(10);
+        this.setAttackPower(1);
+        this.setPlowing(false);
+        this.setHarvesting(false);
 
     }
 

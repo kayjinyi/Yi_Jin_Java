@@ -10,7 +10,7 @@ public class FarmerTest {
 
     @Before
     public void setUp(){
-        farmer1 = new Farmer();
+        farmer1 = new Farmer("good", "farmer1");
     }
     @Test
     public void shouldReturnFarmerValue(){

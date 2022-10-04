@@ -4,23 +4,14 @@ public class Constable extends Base{
     private String jurisdiction;
     private String arrestAnotherCharacter;
 
-    public Constable() {
-        this.strength = 60;
-        this.health = 100;
-        this.stamina = 60;
-        this.speed = 20;
-        this.attackPower = 5;
-    }
 
-    public Constable(String properties, String name, int strength, int health, int stamina, int speed, int attackPower, boolean running, boolean arrested, String abilities, String attackAnotherCharacter, String jurisdiction,String arrestAnotherCharacter){
-        super(properties, name, strength, health, stamina, speed, attackPower, running, arrested, abilities, attackAnotherCharacter);
-        this.jurisdiction = jurisdiction;
-        this.arrestAnotherCharacter = arrestAnotherCharacter;
-        this.strength = 60;
-        this.health = 100;
-        this.stamina = 60;
-        this.speed = 20;
-        this.attackPower = 5;
+    public Constable(String properties, String name){
+        super(properties, name);
+        this.setStrength(60);
+        this.setHealth(100);
+        this.setStamina(60);
+        this.setSpeed(20);
+        this.setAttackPower(5);
     }
 
     public String getJurisdiction() {

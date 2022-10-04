@@ -1,17 +1,19 @@
 package com.company.factory;
 
+import java.util.List;
+
 public class IceCream {
 
     private String flavor;
    private double salePrice;
    private double productionCost;
    private String productionTime;
-   private String ingredients;
+   private List<String> ingredients;
 
     public IceCream() {
     }
 
-    public IceCream(String flavor, double salePrice, double productionCost, String productionTime, String ingredients) {
+    public IceCream(String flavor, double salePrice, double productionCost, String productionTime, List<String> ingredients) {
         this.flavor = flavor;
         this.salePrice = salePrice;
         this.productionCost = productionCost;
@@ -66,11 +68,16 @@ public class IceCream {
         this.productionTime = productionTime;
     }
 
-    public String getIngredients() {
+    public List<String> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(String ingredients) {
+    public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public void addIngredients(String str){
+
+        this.ingredients.add(str);
     }
 }
