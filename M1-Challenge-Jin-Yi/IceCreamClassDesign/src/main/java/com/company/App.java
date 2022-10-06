@@ -15,6 +15,8 @@ public class App {
         iceCreamFromFactory.raisePriceByThree();
         System.out.println("The profit of production of 500 iceCream is " + 500*iceCreamFromFactory.calculatingProfit());
         System.out.println("The production time right now is " + iceCreamFromFactory.changeProductionTime("2022-10-01"));
+        iceCreamFromFactory.addIngredients("sugar");
+        System.out.println("Add sugar then the ingredients will be " + iceCreamFromFactory.getIngredients());
 
 
 

@@ -11,8 +11,6 @@ public class Base {
     protected int attackPower;
     protected boolean running = false;
     protected boolean arrested = false;
-    protected String abilities;
-    protected String attackAnotherCharacter;
 
     public Base() {
 
@@ -100,19 +98,8 @@ public class Base {
         this.arrested = arrested;
     }
 
-    public String getAbilities() {
-        return abilities;
-    }
 
-    public void setAbilities(String abilities) {
-        this.abilities = abilities;
-    }
-
-    public String getAttackAnotherCharacter() {
-        return attackAnotherCharacter;
-    }
-
-    public void setAttackAnotherCharacter(String attackAnotherCharacter) {
-        this.attackAnotherCharacter = attackAnotherCharacter;
+    public void setAttackAnotherCharacter(Base character1) {
+        character1.health -= 10;
     }
 }

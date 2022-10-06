@@ -2,7 +2,6 @@ package com.company;
 
 public class Constable extends Base{
     private String jurisdiction;
-    private String arrestAnotherCharacter;
 
 
     public Constable(String properties, String name){
@@ -22,11 +21,7 @@ public class Constable extends Base{
         this.jurisdiction = jurisdiction;
     }
 
-    public String getArrestAnotherCharacter() {
-        return arrestAnotherCharacter;
-    }
-
-    public void setArrestAnotherCharacter(String arrestAnotherCharacter) {
-        this.arrestAnotherCharacter = arrestAnotherCharacter;
+    public void arrestAnotherCharacter(Base character1) {
+        character1.arrested = false;
     }
 }
