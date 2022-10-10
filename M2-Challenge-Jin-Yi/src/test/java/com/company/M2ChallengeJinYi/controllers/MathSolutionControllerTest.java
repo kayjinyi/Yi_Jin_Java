@@ -34,8 +34,8 @@ public class MathSolutionControllerTest {
     public void setUp(){
         mathSolutionT = new MathSolution();
     }
-
-    @Test
+//testing POST /add
+//    @Test
 //    public void shouldReturnAdditionOnPostRequest() throws Exception {
 //
 //        // ARRANGE
@@ -60,6 +60,26 @@ public class MathSolutionControllerTest {
 ////                .andExpect(content().json(outputJson));
 //    }
 
+//    @Test
+//    public void shouldReturn422StatusCodeIfRequestBodyIsInvalid() throws Exception {
+//        Record inputRecord = new Record();
+//        inputRecord.setArtist("William Joel");
+//        inputRecord.setAlbum("The Stranger");
+//        inputRecord.setId(2);
+//
+//        String inputJson = mapper.writeValueAsString(inputRecord);
+//
+//        mockMvc.perform(
+//                        put("/records/2")
+//                                .content(inputJson)
+//                                .contentType(MediaType.APPLICATION_JSON)
+//                )
+//                .andDo(print())
+//                .andExpect(status().isUnprocessableEntity());
+//    }
 
+//testing POST /subtract
+    //testing POST /multiply
+    //testing POST /divide
 
 }

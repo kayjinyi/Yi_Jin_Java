@@ -41,16 +41,13 @@ public class MonthControllerTest {
     }
     // 2. testing GET /month/{monthNumber} input out of range
 //    Try record
-//    public void shouldReturn404StatusCodeIfRecordNotFound() throws Exception {
-//        mockMvc.perform(get("/month/-1"))
-//                .andDo(print())
-//                .andExpect(status().isUnprocessableEntity());
-//    }
-//    public void shouldReturn404StatusCodeIfRecordNotFound2() throws Exception {
-//        mockMvc.perform(get("/month/15"))
-//                .andDo(print())
-//                .andExpect(status().isUnprocessableEntity());
-//    }
+    @Test
+    public void shouldReturn422StatusCodeIfMonthNotFound() throws Exception {
+        mockMvc.perform(get("/month/-1"))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+
 
 
 // 3. testing GET /randomMonth MockMVC test for successful response.
@@ -60,7 +57,9 @@ public class MonthControllerTest {
     // ARRANGE and ACT
     mockMvc.perform(get("/randomMonth"))
             .andDo(print())
-            .andExpect(status().isOk());
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.number").isNotEmpty())//number not empty
+            .andExpect(jsonPath("$.name").isNotEmpty());// name not empty
     }
 // 4. Months are served at random.see folder models/MonthTest
 }
