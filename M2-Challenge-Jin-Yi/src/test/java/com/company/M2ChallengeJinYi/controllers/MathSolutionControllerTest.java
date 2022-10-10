@@ -11,11 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.Assert.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -28,50 +23,43 @@ public class MathSolutionControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private Object mapper = new ObjectMapper();
-    private MathSolution mathSolutionT;
+    private ObjectMapper mapper = new ObjectMapper();
+    private MathSolution mathSolution;
+
     @Before
     public void setUp(){
-        mathSolutionT = new MathSolution();
+        mathSolution = new MathSolution();
     }
 //testing POST /add
-//    @Test
-//    public void shouldReturnAdditionOnPostRequest() throws Exception {
-//
-//        // ARRANGE
-//        MathSolution mathSolution = new MathSolution();
-//        mathSolution.setOperand1(2);
-//        mathSolution.setOperand2(3);
-//        mathSolution.setOperations("add");
-//        mathSolution.setAnswer(5);
-//        // Convert Java Object to JSON.
-//        String inputJson = mapper.writeValueAsString(mathSolution);
-//
-////        String outputJson = mapper.writeValueAsString(5);
-//
-//        // ACT
-//        mockMvc.perform(
-//                        post("/add")                            // Perform the POST request.
-//                                .content(inputJson)                           // Set the request body.
-//                                .contentType(MediaType.APPLICATION_JSON)      // Tell the server it's in JSON format.
-//                )
-//                .andDo(print())                                // Print results to console.
-//                .andExpect(status().isCreated());             // ASSERT (status code is 201)
-////                .andExpect(content().json(outputJson));
-//    }
+    @Test
+    public void shouldReturnAdditionOnPostRequest() throws Exception {
 
+        // ARRANGE
+        mathSolution.setOperand1(2);
+        mathSolution.setOperand2(3);
+        mathSolution.setAnswer(5);
+        String inputJson = mapper.writeValueAsString(mathSolution);
+
+        // ACT
+        mockMvc.perform(
+                        post("/add")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)      // Tell the server it's in JSON format.
+                )
+                .andDo(print())                                // Print results to console.
+                .andExpect(status().isCreated());// ASSERT (status code is 201)
+
+    }
+//
 //    @Test
 //    public void shouldReturn422StatusCodeIfRequestBodyIsInvalid() throws Exception {
-//        Record inputRecord = new Record();
-//        inputRecord.setArtist("William Joel");
-//        inputRecord.setAlbum("The Stranger");
-//        inputRecord.setId(2);
 //
-//        String inputJson = mapper.writeValueAsString(inputRecord);
+//
+//        String inputJson = mapper.writeValueAsString(mathSolution);
 //
 //        mockMvc.perform(
-//                        put("/records/2")
-//                                .content(inputJson)
+//                        put("/add")
+//                                .content(mathSolution("a",2))
 //                                .contentType(MediaType.APPLICATION_JSON)
 //                )
 //                .andDo(print())
@@ -79,7 +67,79 @@ public class MathSolutionControllerTest {
 //    }
 
 //testing POST /subtract
+    @Test
+    public void shouldReturnDifferenceOnPostRequest() throws Exception {
+
+        // ARRANGE
+        mathSolution.setOperand1(2);
+        mathSolution.setOperand2(3);
+        mathSolution.setAnswer(-1);
+        String inputJson = mapper.writeValueAsString(mathSolution);
+
+        // ACT
+        mockMvc.perform(
+                        post("/subtract")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)      // Tell the server it's in JSON format.
+                )
+                .andDo(print())                                // Print results to console.
+                .andExpect(status().isCreated());// ASSERT (status code is 201)
+
+    }
     //testing POST /multiply
+    @Test
+    public void shouldReturnProductOnPostRequest() throws Exception {
+
+        // ARRANGE
+        mathSolution.setOperand1(2);
+        mathSolution.setOperand2(3);
+        mathSolution.setAnswer(6);
+        String inputJson = mapper.writeValueAsString(mathSolution);
+
+        // ACT
+        mockMvc.perform(
+                        post("/multiply")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)      // Tell the server it's in JSON format.
+                )
+                .andDo(print())                                // Print results to console.
+                .andExpect(status().isCreated());// ASSERT (status code is 201)
+
+    }
     //testing POST /divide
+    @Test
+    public void shouldReturnQuotientOnPostRequest() throws Exception {
+
+        // ARRANGE
+        mathSolution.setOperand1(2);
+        mathSolution.setOperand2(3);
+        mathSolution.setAnswer(0);
+        String inputJson = mapper.writeValueAsString(mathSolution);
+
+        // ACT
+        mockMvc.perform(
+                        post("/divide")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)      // Tell the server it's in JSON format.
+                )
+                .andDo(print())                                // Print results to console.
+                .andExpect(status().isCreated());// ASSERT (status code is 201)
+
+    }
+    @Test
+    public void shouldReturn422StatusCodeIfDenominatorIsZero() throws Exception {
+
+        mathSolution.setOperand1(9);
+        mathSolution.setOperand2(0);
+        String inputJson = mapper.writeValueAsString(mathSolution);
+
+        mockMvc.perform(
+                        post("/divide")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
 
 }

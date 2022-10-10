@@ -1,5 +1,7 @@
 package com.company.M2ChallengeJinYi.models;
 
+import java.util.Objects;
+
 public class MathSolution {
     private int operand1;
     private int operand2;
@@ -65,5 +67,28 @@ public class MathSolution {
 
     public void setAnswer(int answer) {
         this.answer = answer;
+    }
+
+    @Override
+    public String toString() {
+        return "MathSolution{" +
+                "operand1=" + operand1 +
+                ", operand2=" + operand2 +
+                ", operations='" + operations + '\'' +
+                ", answer=" + answer +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MathSolution that = (MathSolution) o;
+        return operand1 == that.operand1 && operand2 == that.operand2 && answer == that.answer && Objects.equals(operations, that.operations);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(operand1, operand2, operations, answer);
     }
 }
