@@ -43,7 +43,7 @@ public class MonthController {
             }
         }
         if (returnedMonth == null) {
-            throw new NotFoundException("Record not found in collection");
+            throw new IllegalArgumentException("There are only 12 months");
         }
 
         return returnedMonth;
@@ -64,7 +64,7 @@ public class MonthController {
         }
 
         if (returnedMonth == null) {
-            throw new NotFoundException("Record not found in collection");
+            throw new IllegalArgumentException("Months not found");
         }
         return returnedMonth;
     }

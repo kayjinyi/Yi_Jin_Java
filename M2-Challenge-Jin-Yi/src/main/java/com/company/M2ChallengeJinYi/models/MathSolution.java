@@ -16,23 +16,23 @@ public class MathSolution {
         this.operand2 = operand2;
     }
 
-    public int add(int operand1, int operand2) {
-        return operand1 + operand2;
+    public int add() {
+        return answer = operand1 + operand2;
     }
 
 
-    public int subtract(int operand1, int operand2) {
-        return operand1 - operand2;
+    public int subtract() {
+        return answer = operand1 - operand2;
     }
 
 
-    public int multiply(int operand1, int operand2) {
-        return operand1 * operand2;
+    public int multiply() {
+        return answer = operand1 * operand2;
     }
 
 
-    public int divide(int operand1, int operand2) {
-        return operand1 / operand2;
+    public int divide() {
+        return answer = operand1 / operand2;
     }
 
     public int getOperand1() {

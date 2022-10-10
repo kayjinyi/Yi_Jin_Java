@@ -13,13 +13,36 @@ import javax.validation.Valid;
 @RestController
 public class MathSolutionController {
 
-    private static MathSolution mathSolution= new MathSolution();
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public int calculateSum(@RequestBody @Valid int operand1, int operand2){
+    public Integer calculateSum(@RequestBody @Valid MathSolution mathSolution){
 
-        return mathSolution.add(operand1, operand2);
+        return mathSolution.add();
+    }
+
+
+    @RequestMapping(value = "/subtract", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public Integer calculateDifference(@RequestBody @Valid MathSolution mathSolution){
+
+        return mathSolution.subtract();
+    }
+
+    @RequestMapping(value = "/multiply", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public Integer calculateProduct(@RequestBody @Valid MathSolution mathSolution){
+
+        return mathSolution.multiply();
+    }
+
+    @RequestMapping(value = "/divide", method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public Integer calculateQuotient(@RequestBody @Valid MathSolution mathSolution){
+        if(mathSolution.getOperand2() == 0){
+            throw new IllegalArgumentException("Zero cannot be denominator");
+        }
+        return mathSolution.divide();
     }
 
 }
