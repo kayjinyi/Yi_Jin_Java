@@ -14,6 +14,7 @@ public class CalculatorApp {
         System.out.println(calculator.multiply(6.7,4.4));
         System.out.println(calculator.subtract(5.5,0.5));
         System.out.println(calculator.divide(10.8,2.2));
+        System.out.println((int)(Math.random()*12 +1));
 
     }
 }
