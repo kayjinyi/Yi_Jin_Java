@@ -11,6 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -50,21 +53,22 @@ public class MathSolutionControllerTest {
                 .andExpect(status().isCreated());// ASSERT (status code is 201)
 
     }
-//
-//    @Test
-//    public void shouldReturn422StatusCodeIfRequestBodyIsInvalid() throws Exception {
-//
-//
-//        String inputJson = mapper.writeValueAsString(mathSolution);
-//
-//        mockMvc.perform(
-//                        put("/add")
-//                                .content(mathSolution("a",2))
-//                                .contentType(MediaType.APPLICATION_JSON)
-//                )
-//                .andDo(print())
-//                .andExpect(status().isUnprocessableEntity());
-//    }
+
+    @Test
+    public void shouldReturn422StatusCodeIfRequestBodyIsInvalidForAdd() throws Exception {
+        Map<String, String> inputMap = new HashMap<>();
+        inputMap.put("operand1","2");
+        inputMap.put("operand2", "a");
+        String inputJson = mapper.writeValueAsString(inputMap);
+
+        mockMvc.perform(
+                        post("/add")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
 
 //testing POST /subtract
     @Test
@@ -86,6 +90,24 @@ public class MathSolutionControllerTest {
                 .andExpect(status().isCreated());// ASSERT (status code is 201)
 
     }
+
+    @Test
+    public void shouldReturn422StatusCodeIfRequestBodyIsInvalidForSubtract() throws Exception {
+        Map<String, String> inputMap = new HashMap<>();
+        inputMap.put("operand1","2");
+        inputMap.put("operand2", "a");
+        String inputJson = mapper.writeValueAsString(inputMap);
+
+        mockMvc.perform(
+                        post("/subtract")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+
+
     //testing POST /multiply
     @Test
     public void shouldReturnProductOnPostRequest() throws Exception {
@@ -106,6 +128,23 @@ public class MathSolutionControllerTest {
                 .andExpect(status().isCreated());// ASSERT (status code is 201)
 
     }
+
+    @Test
+    public void shouldReturn422StatusCodeIfRequestBodyIsInvalidForMultiply() throws Exception {
+        Map<String, String> inputMap = new HashMap<>();
+        inputMap.put("operand1","2");
+        inputMap.put("operand2", "a");
+        String inputJson = mapper.writeValueAsString(inputMap);
+
+        mockMvc.perform(
+                        post("/multiply")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+
     //testing POST /divide
     @Test
     public void shouldReturnQuotientOnPostRequest() throws Exception {
@@ -126,6 +165,23 @@ public class MathSolutionControllerTest {
                 .andExpect(status().isCreated());// ASSERT (status code is 201)
 
     }
+
+    @Test
+    public void shouldReturn422StatusCodeIfRequestBodyIsInvalidForDivide() throws Exception {
+        Map<String, String> inputMap = new HashMap<>();
+        inputMap.put("operand1","2");
+        inputMap.put("operand2", "a");
+        String inputJson = mapper.writeValueAsString(inputMap);
+
+        mockMvc.perform(
+                        post("/divide")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+
     @Test
     public void shouldReturn422StatusCodeIfDenominatorIsZero() throws Exception {
 

@@ -1,11 +1,9 @@
 package com.company.M2ChallengeJinYi.controllers;
 
 import com.company.M2ChallengeJinYi.models.MathSolution;
-import io.swagger.v3.core.util.Json;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import org.webjars.NotFoundException;
 
 import javax.validation.Valid;
 

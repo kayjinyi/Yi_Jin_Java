@@ -3,53 +3,53 @@ package com.company.M2ChallengeJinYi.models;
 import java.util.Objects;
 
 public class MathSolution {
-    private int operand1;
-    private int operand2;
+    private Integer operand1;
+    private Integer operand2;
     private String operations;
 //    operation (one of add, subtract, multiply, and divide)
     //could use enum
-    private int answer;
+    private Integer answer;
 
     public MathSolution() {
     }
 
-    public MathSolution(int operand1, int operand2) {
+    public MathSolution(Integer operand1, Integer operand2) {
         this.operand1 = operand1;
         this.operand2 = operand2;
     }
 
-    public int add() {
+    public Integer add() {
         return answer = operand1 + operand2;
     }
 
 
-    public int subtract() {
+    public Integer subtract() {
         return answer = operand1 - operand2;
     }
 
 
-    public int multiply() {
+    public Integer multiply() {
         return answer = operand1 * operand2;
     }
 
 
-    public int divide() {
+    public Integer divide() {
         return answer = operand1 / operand2;
     }
 
-    public int getOperand1() {
+    public Integer getOperand1() {
         return operand1;
     }
 
-    public void setOperand1(int operand1) {
+    public void setOperand1(Integer operand1) {
         this.operand1 = operand1;
     }
 
-    public int getOperand2() {
+    public Integer getOperand2() {
         return operand2;
     }
 
-    public void setOperand2(int operand2) {
+    public void setOperand2(Integer operand2) {
         this.operand2 = operand2;
     }
 
@@ -61,11 +61,11 @@ public class MathSolution {
         this.operations = operations;
     }
 
-    public int getAnswer() {
+    public Integer getAnswer() {
         return answer;
     }
 
-    public void setAnswer(int answer) {
+    public void setAnswer(Integer answer) {
         this.answer = answer;
     }
 
@@ -84,7 +84,7 @@ public class MathSolution {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MathSolution that = (MathSolution) o;
-        return operand1 == that.operand1 && operand2 == that.operand2 && answer == that.answer && Objects.equals(operations, that.operations);
+        return Objects.equals(operand1, that.operand1) && Objects.equals(operand2, that.operand2) && Objects.equals(operations, that.operations) && Objects.equals(answer, that.answer);
     }
 
     @Override
