@@ -70,6 +70,37 @@ public class MathSolutionControllerTest {
                 .andExpect(status().isUnprocessableEntity());
     }
 
+    @Test
+    public void shouldReturn422StatusCodeIfOneRequestBodyIsMissingForAdd() throws Exception {
+        Map<String, String> inputMap = new HashMap<>();
+        inputMap.put("operand1","2");
+        inputMap.put("operand2", "");
+        String inputJson = mapper.writeValueAsString(inputMap);
+
+        mockMvc.perform(
+                        post("/add")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+    @Test
+    public void shouldReturn422StatusCodeIfAnotherOneRequestBodyIsMissingForAdd() throws Exception {
+        Map<String, String> inputMap = new HashMap<>();
+        inputMap.put("operand1","");
+        inputMap.put("operand2", "2");
+        String inputJson = mapper.writeValueAsString(inputMap);
+
+        mockMvc.perform(
+                        post("/add")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+
 //testing POST /subtract
     @Test
     public void shouldReturnDifferenceOnPostRequest() throws Exception {
@@ -96,6 +127,36 @@ public class MathSolutionControllerTest {
         Map<String, String> inputMap = new HashMap<>();
         inputMap.put("operand1","2");
         inputMap.put("operand2", "a");
+        String inputJson = mapper.writeValueAsString(inputMap);
+
+        mockMvc.perform(
+                        post("/subtract")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+    @Test
+    public void shouldReturn422StatusCodeIfOneRequestBodyIsMissingForSubtract() throws Exception {
+        Map<String, String> inputMap = new HashMap<>();
+        inputMap.put("operand1","2");
+        inputMap.put("operand2", "");
+        String inputJson = mapper.writeValueAsString(inputMap);
+
+        mockMvc.perform(
+                        post("/subtract")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+    @Test
+    public void shouldReturn422StatusCodeIfAnotherOneRequestBodyIsMissingForSubtract() throws Exception {
+        Map<String, String> inputMap = new HashMap<>();
+        inputMap.put("operand1","");
+        inputMap.put("operand2", "2");
         String inputJson = mapper.writeValueAsString(inputMap);
 
         mockMvc.perform(
@@ -144,6 +205,36 @@ public class MathSolutionControllerTest {
                 .andDo(print())
                 .andExpect(status().isUnprocessableEntity());
     }
+    @Test
+    public void shouldReturn422StatusCodeIfOneRequestBodyIsMissingForMultiply() throws Exception {
+        Map<String, String> inputMap = new HashMap<>();
+        inputMap.put("operand1","2");
+        inputMap.put("operand2", "");
+        String inputJson = mapper.writeValueAsString(inputMap);
+
+        mockMvc.perform(
+                        post("/multiply")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+    @Test
+    public void shouldReturn422StatusCodeIfAnotherOneRequestBodyIsMissingForMultiply() throws Exception {
+        Map<String, String> inputMap = new HashMap<>();
+        inputMap.put("operand1","");
+        inputMap.put("operand2", "2");
+        String inputJson = mapper.writeValueAsString(inputMap);
+
+        mockMvc.perform(
+                        post("/multiply")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
 
     //testing POST /divide
     @Test
@@ -171,6 +262,36 @@ public class MathSolutionControllerTest {
         Map<String, String> inputMap = new HashMap<>();
         inputMap.put("operand1","2");
         inputMap.put("operand2", "a");
+        String inputJson = mapper.writeValueAsString(inputMap);
+
+        mockMvc.perform(
+                        post("/divide")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+    @Test
+    public void shouldReturn422StatusCodeIfOneRequestBodyIsMissingForDivide() throws Exception {
+        Map<String, String> inputMap = new HashMap<>();
+        inputMap.put("operand1","2");
+        inputMap.put("operand2", "");
+        String inputJson = mapper.writeValueAsString(inputMap);
+
+        mockMvc.perform(
+                        post("/divide")
+                                .content(inputJson)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+    @Test
+    public void shouldReturn422StatusCodeIfAnotherOneRequestBodyIsMissingForDivide() throws Exception {
+        Map<String, String> inputMap = new HashMap<>();
+        inputMap.put("operand1","");
+        inputMap.put("operand2", "2");
         String inputJson = mapper.writeValueAsString(inputMap);
 
         mockMvc.perform(
