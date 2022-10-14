@@ -19,6 +19,8 @@ public class MathSolutionController {
         if(mathSolution.getOperand2() == null || mathSolution.getOperand1() == null ){
             throw new IllegalArgumentException("Operand1 and Operand2 can not be empty");
         }
+        mathSolution.setAnswer(mathSolution.add());
+        mathSolution.setOperations("add");
         return mathSolution.add();
     }
 
@@ -29,6 +31,8 @@ public class MathSolutionController {
         if(mathSolution.getOperand2() == null || mathSolution.getOperand1() == null ){
             throw new IllegalArgumentException("Operand1 and Operand2 can not be empty");
         }
+        mathSolution.setAnswer(mathSolution.subtract());
+        mathSolution.setOperations("subtract");
         return mathSolution.subtract();
     }
 
@@ -38,6 +42,8 @@ public class MathSolutionController {
         if(mathSolution.getOperand2() == null || mathSolution.getOperand1() == null ){
             throw new IllegalArgumentException("Operand1 and Operand2 can not be empty");
         }
+        mathSolution.setAnswer(mathSolution.multiply());
+        mathSolution.setOperations("multiply");
         return mathSolution.multiply();
     }
 
@@ -51,6 +57,8 @@ public class MathSolutionController {
         if(mathSolution.getOperand2() == 0){
             throw new IllegalArgumentException("Zero cannot be denominator");
         }
+        mathSolution.setAnswer(mathSolution.divide());
+        mathSolution.setOperations("divide");
         return mathSolution.divide();
     }
 
