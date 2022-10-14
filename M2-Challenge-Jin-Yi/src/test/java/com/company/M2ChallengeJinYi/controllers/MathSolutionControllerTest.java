@@ -23,15 +23,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(MathSolutionController.class)
 public class MathSolutionControllerTest {
 
+
     @Autowired
     private MockMvc mockMvc;
 
     private ObjectMapper mapper = new ObjectMapper();
     private MathSolution mathSolution;
+    Map<String, String> inputMap;
 
     @Before
     public void setUp(){
+
         mathSolution = new MathSolution();
+        inputMap = new HashMap<>();
+
     }
 //testing POST /add
     @Test
@@ -51,12 +56,10 @@ public class MathSolutionControllerTest {
                 )
                 .andDo(print())                                // Print results to console.
                 .andExpect(status().isCreated());// ASSERT (status code is 201)
-
     }
 
     @Test
     public void shouldReturn422StatusCodeIfRequestBodyIsInvalidForAdd() throws Exception {
-        Map<String, String> inputMap = new HashMap<>();
         inputMap.put("operand1","2");
         inputMap.put("operand2", "a");
         String inputJson = mapper.writeValueAsString(inputMap);
@@ -72,7 +75,6 @@ public class MathSolutionControllerTest {
 
     @Test
     public void shouldReturn422StatusCodeIfOneRequestBodyIsMissingForAdd() throws Exception {
-        Map<String, String> inputMap = new HashMap<>();
         inputMap.put("operand1","2");
         inputMap.put("operand2", "");
         String inputJson = mapper.writeValueAsString(inputMap);
@@ -87,7 +89,6 @@ public class MathSolutionControllerTest {
     }
     @Test
     public void shouldReturn422StatusCodeIfAnotherOneRequestBodyIsMissingForAdd() throws Exception {
-        Map<String, String> inputMap = new HashMap<>();
         inputMap.put("operand1","");
         inputMap.put("operand2", "2");
         String inputJson = mapper.writeValueAsString(inputMap);
@@ -124,7 +125,7 @@ public class MathSolutionControllerTest {
 
     @Test
     public void shouldReturn422StatusCodeIfRequestBodyIsInvalidForSubtract() throws Exception {
-        Map<String, String> inputMap = new HashMap<>();
+
         inputMap.put("operand1","2");
         inputMap.put("operand2", "a");
         String inputJson = mapper.writeValueAsString(inputMap);
@@ -139,7 +140,7 @@ public class MathSolutionControllerTest {
     }
     @Test
     public void shouldReturn422StatusCodeIfOneRequestBodyIsMissingForSubtract() throws Exception {
-        Map<String, String> inputMap = new HashMap<>();
+
         inputMap.put("operand1","2");
         inputMap.put("operand2", "");
         String inputJson = mapper.writeValueAsString(inputMap);
@@ -154,7 +155,6 @@ public class MathSolutionControllerTest {
     }
     @Test
     public void shouldReturn422StatusCodeIfAnotherOneRequestBodyIsMissingForSubtract() throws Exception {
-        Map<String, String> inputMap = new HashMap<>();
         inputMap.put("operand1","");
         inputMap.put("operand2", "2");
         String inputJson = mapper.writeValueAsString(inputMap);
@@ -192,7 +192,6 @@ public class MathSolutionControllerTest {
 
     @Test
     public void shouldReturn422StatusCodeIfRequestBodyIsInvalidForMultiply() throws Exception {
-        Map<String, String> inputMap = new HashMap<>();
         inputMap.put("operand1","2");
         inputMap.put("operand2", "a");
         String inputJson = mapper.writeValueAsString(inputMap);
@@ -207,7 +206,6 @@ public class MathSolutionControllerTest {
     }
     @Test
     public void shouldReturn422StatusCodeIfOneRequestBodyIsMissingForMultiply() throws Exception {
-        Map<String, String> inputMap = new HashMap<>();
         inputMap.put("operand1","2");
         inputMap.put("operand2", "");
         String inputJson = mapper.writeValueAsString(inputMap);
@@ -222,7 +220,6 @@ public class MathSolutionControllerTest {
     }
     @Test
     public void shouldReturn422StatusCodeIfAnotherOneRequestBodyIsMissingForMultiply() throws Exception {
-        Map<String, String> inputMap = new HashMap<>();
         inputMap.put("operand1","");
         inputMap.put("operand2", "2");
         String inputJson = mapper.writeValueAsString(inputMap);
@@ -239,7 +236,6 @@ public class MathSolutionControllerTest {
     //testing POST /divide
     @Test
     public void shouldReturnQuotientOnPostRequest() throws Exception {
-
         // ARRANGE
         mathSolution.setOperand1(2);
         mathSolution.setOperand2(3);
@@ -259,7 +255,6 @@ public class MathSolutionControllerTest {
 
     @Test
     public void shouldReturn422StatusCodeIfRequestBodyIsInvalidForDivide() throws Exception {
-        Map<String, String> inputMap = new HashMap<>();
         inputMap.put("operand1","2");
         inputMap.put("operand2", "a");
         String inputJson = mapper.writeValueAsString(inputMap);
@@ -274,7 +269,6 @@ public class MathSolutionControllerTest {
     }
     @Test
     public void shouldReturn422StatusCodeIfOneRequestBodyIsMissingForDivide() throws Exception {
-        Map<String, String> inputMap = new HashMap<>();
         inputMap.put("operand1","2");
         inputMap.put("operand2", "");
         String inputJson = mapper.writeValueAsString(inputMap);
@@ -289,7 +283,6 @@ public class MathSolutionControllerTest {
     }
     @Test
     public void shouldReturn422StatusCodeIfAnotherOneRequestBodyIsMissingForDivide() throws Exception {
-        Map<String, String> inputMap = new HashMap<>();
         inputMap.put("operand1","");
         inputMap.put("operand2", "2");
         String inputJson = mapper.writeValueAsString(inputMap);
@@ -305,7 +298,6 @@ public class MathSolutionControllerTest {
 
     @Test
     public void shouldReturn422StatusCodeIfDenominatorIsZero() throws Exception {
-
         mathSolution.setOperand1(9);
         mathSolution.setOperand2(0);
         String inputJson = mapper.writeValueAsString(mathSolution);
