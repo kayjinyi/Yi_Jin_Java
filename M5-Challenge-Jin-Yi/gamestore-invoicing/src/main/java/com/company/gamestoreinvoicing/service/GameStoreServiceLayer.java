@@ -28,15 +28,15 @@ public class GameStoreServiceLayer {
 
     GamestoreCatalog client;
     InvoiceRepository invoiceRepo;
-    TaxRepository taxRepo;
-    ProcessingFeeRepository processingFeeRepo;
+    TaxRepository taxRepository;
+    ProcessingFeeRepository processingFeeRepository;
 
     @Autowired
-    public GameStoreServiceLayer(GamestoreCatalog client, InvoiceRepository invoiceRepo, TaxRepository taxRepo, ProcessingFeeRepository processingFeeRepo) {
+    public GameStoreServiceLayer(GamestoreCatalog client, InvoiceRepository invoiceRepo, TaxRepository taxRepository, ProcessingFeeRepository processingFeeRepository) {
         this.client = client;
         this.invoiceRepo = invoiceRepo;
-        this.taxRepo = taxRepo;
-        this.processingFeeRepo = processingFeeRepo;
+        this.taxRepository = taxRepository;
+        this.processingFeeRepository = processingFeeRepository;
     }
 
     public InvoiceViewModel createInvoice(InvoiceViewModel invoiceViewModel) {
@@ -116,19 +116,6 @@ public class GameStoreServiceLayer {
                 invoice.getUnitPrice().multiply(
                         new BigDecimal(invoiceViewModel.getQuantity())).setScale(2, RoundingMode.HALF_UP));
 
-
-//        Optional<Tax> tax = Optional.ofNullable(taxRepo.findByState(invoice.getState()));
-//        invoice.setTax(tax.get().getRate().multiply(invoice.getSubtotal()));
-//
-//        ProcessingFee fee = processingFeeRepo.findByProductType(invoiceViewModel.getItemType());
-//        if (invoice.getQuantity() > 10) {
-//            Double additionalFee = 15.49;
-//            invoice.setProcessingFee(fee.getFee().add(new BigDecimal(additionalFee)));
-//        } else {
-//            invoice.setProcessingFee(fee.getFee());
-//        }
-//        invoice.setTotal(invoice.getSubtotal().add(invoice.getTax()).add(invoice.getProcessingFee()));
-        //Throw Exception if subtotal is greater than 999.99
         if ((invoice.getSubtotal().compareTo(new BigDecimal(999.99)) > 0)) {
             throw new IllegalArgumentException("Subtotal exceeds maximum purchase price of $999.99");
         }
@@ -136,7 +123,7 @@ public class GameStoreServiceLayer {
         String stateS = invoice.getState();
         //Validate State and Calc tax...
         BigDecimal tempTaxRate;
-        Optional<Tax> returnVal = Optional.ofNullable(taxRepo.findByState(stateS));
+        Optional<Tax> returnVal = Optional.ofNullable(taxRepository.findByState(stateS));
 
 
         if (returnVal.isPresent()) {
@@ -151,10 +138,13 @@ public class GameStoreServiceLayer {
             throw new IllegalArgumentException( invoice.getState() + ": Invalid State code.");
 
         BigDecimal processingFee;
-        Optional<ProcessingFee> returnVal2 = processingFeeRepo.findById(invoice.getItemType());
+        String productType = invoice.getItemType();
+        System.out.println(productType);
+        Optional<ProcessingFee> returnVal2 = Optional.ofNullable(processingFeeRepository.findByProductType(productType));
 
         if (returnVal2.isPresent()) {
             processingFee = returnVal2.get().getFee();
+            System.out.println(returnVal2);
         } else {
             throw new IllegalArgumentException("Requested item is unavailable.");
         }
