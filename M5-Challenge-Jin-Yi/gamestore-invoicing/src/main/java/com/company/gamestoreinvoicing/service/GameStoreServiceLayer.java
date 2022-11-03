@@ -1,7 +1,6 @@
 package com.company.gamestoreinvoicing.service;
 
 
-import com.company.gamestoreinvoicing.ConsoleRepository;
 import com.company.gamestoreinvoicing.model.*;
 import com.company.gamestoreinvoicing.repository.*;
 import com.company.gamestoreinvoicing.util.feign.GamestoreCatalog;
@@ -138,7 +137,7 @@ public class GameStoreServiceLayer {
         //Validate State and Calc tax...
         BigDecimal tempTaxRate;
         Optional<Tax> returnVal = Optional.ofNullable(taxRepo.findByState(stateS));
-        System.out.println(returnVal);
+
 
         if (returnVal.isPresent()) {
             tempTaxRate = returnVal.get().getRate();

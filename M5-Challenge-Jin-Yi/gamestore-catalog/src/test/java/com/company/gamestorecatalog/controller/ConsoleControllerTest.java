@@ -2,17 +2,18 @@ package com.company.gamestorecatalog.controller;
 
 import com.company.gamestorecatalog.model.Console;
 import com.company.gamestorecatalog.repository.ConsoleRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +38,12 @@ public class ConsoleControllerTest {
     private Console console2;
     private Console console3;
     private Console inputConsole;
+    private String console1Json;
     private List<Console> allConsoles;
     private List<Console> sameManufacturerConsoles;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception{
         console1 = new Console(1l, "PS 5", "Sony", "64 GB", "AMD Zen 2", 499.99, 1);
         console2 = new Console(2l, "Xbox One", "Microsoft", "64 GB", "AMD Radeon", 499.99, 1);
         console3 = new Console(3l, "PS 4", "Sony", "32 GB", "Intel i5", 325.99, 2);
@@ -53,6 +55,7 @@ public class ConsoleControllerTest {
         sameManufacturerConsoles = new ArrayList<>();
         sameManufacturerConsoles.add(console1);
         sameManufacturerConsoles.add(console3);
+        console1Json = mapper.writeValueAsString(console1);
     }
 
     @Test
@@ -64,20 +67,10 @@ public class ConsoleControllerTest {
         mockMvc.perform(
                         get("/console/1"))
                 .andDo(print())
-                .andExpect(status().isOk()); // Assert should return 200 OK
+                .andExpect(status().isOk())
+                .andExpect((content().json(console1Json)));
     }
 
-//    @Test
-//    public void shouldReturn404WhenRetrievingNonExistingConsole() throws Exception {
-//        // Arrange
-//        doReturn(Optional.ofNullable(null)).when(consoleRepository).findById(455l);
-//
-//        // Act
-//        mockMvc.perform(
-//                        get("/console/455"))
-//                .andDo(print())
-//                .andExpect(status().isNotFound()); // Assert should return 404 NOT_FOUND
-//    }
 
     @Test
     public void shouldReturn201WhenCreatingANewConsole() throws Exception {
@@ -164,16 +157,16 @@ public class ConsoleControllerTest {
                 .andDo(print())
                 .andExpect(status().isNoContent()); // Assert return 204 NO_CONTENT
     }
-//    @Test
-//    public void shouldReturn404WhenDeletingNonExistingConsole() throws Exception {
-//        // Arrange
-//        doReturn(Optional.ofNullable(null)).when(consoleRepository).findById(134l);
-//
-//        // Act
-//        mockMvc.perform(
-//                        delete("/console/134"))
-//                .andDo(print())
-//                .andExpect(status().isNotFound()); // Assert return 404 NOT_FOUND
-//    }
+    @Test
+    public void shouldReturn404WhenDeletingNonExistingConsole() throws Exception {
+        // Arrange
+        doReturn(Optional.ofNullable(null)).when(consoleRepository).findById(134l);
+
+        // Act
+        mockMvc.perform(
+                        delete("/console/134"))
+                .andDo(print())
+                .andExpect(status().isNotFound()); // Assert return 404 NOT_FOUND
+    }
 
 }

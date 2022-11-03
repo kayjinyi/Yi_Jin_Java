@@ -1,5 +1,6 @@
 package com.company.gamestorecatalog.controller;
 
+import com.company.gamestorecatalog.exception.ResponseStatusException;
 import com.company.gamestorecatalog.model.Tshirt;
 import com.company.gamestorecatalog.repository.TshirtRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,6 +18,7 @@ import java.util.*;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -160,50 +162,42 @@ public class TShirtControllerTest {
                 .andExpect(content().json(outputJson));
     }
 
-    // -------------- MockMVC test for invalid request -----------------
-    // -----------------------------------------------------------------
-//    @Test
-//    public void shouldReturn422ForInvalidInputForTshirtModel() throws Exception {
-//        Map<String, String> inputMap = new HashMap<>();
-//        String inputMapJson;
-//
-//        inputMap.put("size", "XS");
-//        inputMap.put("color", "red");
-//        inputMap.put("description", "Plain");
-//        inputMap.put("quantity", "a");
-//        inputMap.put("price", "-2.00");
-//
-//        inputMapJson = mapper.writeValueAsString(inputMap);
-//
-//        mockMvc.perform(post("/tshirt")
-//                        .content(inputMapJson)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                )
-//                .andDo(print())
-//                .andExpect(status().isUnprocessableEntity());
-//    }
+//     -------------- MockMVC test for invalid request -----------------
+//     -----------------------------------------------------------------
+    @Test
+    public void shouldReturn422ForInvalidInputForTshirtModel() throws Exception {
+        Map<String, String> inputMap = new HashMap<>();
+        String inputMapJson;
 
-//    @Test
-//    public void shouldReturn422ForMissingInputForTshirtModel() throws Exception {
-//        inputTshirt1.setSize(null);
-//
-//        inputJson = mapper.writeValueAsString(inputTshirt1);
-//
-//        mockMvc.perform(post("/tshirt")
-//                        .content(inputJson)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                )
-//                .andDo(print())
-//                .andExpect(status().isUnprocessableEntity());
-//    }
-//
-//    @Test
-//    public void shouldReturn404IWhenGetTshirtByIdNotFound() throws Exception {
-//        mockMvc.perform(get("/tshirt/15"))
-//                .andDo(print())
-//                .andExpect(status().isNotFound());
-//    }
+        inputMap.put("size", "XS");
+        inputMap.put("color", "red");
+        inputMap.put("description", "Plain");
+        inputMap.put("quantity", "a");
+        inputMap.put("price", "-2.00");
 
+        inputMapJson = mapper.writeValueAsString(inputMap);
+
+        mockMvc.perform(post("/tshirt")
+                        .content(inputMapJson)
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    public void shouldReturn422ForMissingInputForTshirtModel() throws Exception {
+        inputTshirt1.setSize(null);
+
+        inputJson = mapper.writeValueAsString(inputTshirt1);
+
+        mockMvc.perform(post("/tshirt")
+                        .content(inputJson)
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity());
+    }
 
 
 }

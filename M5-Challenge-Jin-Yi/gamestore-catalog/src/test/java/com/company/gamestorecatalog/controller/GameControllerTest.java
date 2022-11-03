@@ -137,7 +137,7 @@ public class GameControllerTest {
     }
 
     @Test
-    public void shouldUpdateReturn200StatusCode() throws Exception {
+    public void shouldUpdateReturn204StatusCode() throws Exception {
         mockMvc.perform(
                         put("/game")
                                 .content(game2Json)
