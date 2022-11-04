@@ -292,7 +292,7 @@ public class GameStoreServiceLayerTest {
 
         service.updateConsole(console2);
 
-//        verify(client.getAllConsoles(), times(2)).save(any(Console.class));
+        verify(client, times(2)).saveConsole(any(Console.class));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -317,7 +317,7 @@ public class GameStoreServiceLayerTest {
 
         service.deleteConsole(console2.getId());
 
-//        verify(client.getAllConsoles()).deleteConsole(console2.getId());
+        verify(client).deleteConsoleById(console2.getId());
     }
 
     @Test
@@ -432,7 +432,7 @@ public class GameStoreServiceLayerTest {
 
         service.updateTShirt(tShirt);
 
-//        verify(tShirtRepository, times(2)).save(any(TShirt.class));
+        verify(client, times(2)).saveTShirt(any(TShirt.class));
 
     }
 
@@ -458,7 +458,7 @@ public class GameStoreServiceLayerTest {
 
         service.deleteTShirt(tShirt.getId());
 
-//        verify(tShirtRepository).deleteById(any(Long.class));
+        verify(client).deleteTShirtById(any(Long.class));
 
     }
 
@@ -607,7 +607,7 @@ public class GameStoreServiceLayerTest {
         game.setQuantity(3);
         service.updateGame(game);
 
-//        verify(gameRepository, times(2)).save(any(Game.class));
+        verify(client, times(2)).saveGame(any(Game.class));
     }
 
 
@@ -630,7 +630,7 @@ public class GameStoreServiceLayerTest {
 
         service.deleteGame(game.getId());
 
-//        verify(gameRepository).deleteById(any(Long.class));
+        verify(client).deleteGameById(any(Long.class));
 
     }
 //
